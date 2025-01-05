@@ -17,7 +17,7 @@ const contentSchema = new Schema({
 })
 
 const tagsSchema = new Schema({
-    tagName: {type: String, required: true, unique: true}
+    tagName: {type: String, unique: true, lowercase: true}
 })
 
 const shareLinkSchema = new Schema({
