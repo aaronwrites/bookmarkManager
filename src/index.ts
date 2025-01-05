@@ -3,13 +3,14 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import { userRouter } from "./routes/userRouter";
 import { contentRouter } from "./routes/contentRouter";
+import { tagsRouter } from "./routes/tagsRouter";
 dotenv.config();
 
 const app = express();
 app.use(express.json());
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/contents", contentRouter);
-
+app.use("/api/v1/tags", tagsRouter);
 
 const main = async () => {
     try {

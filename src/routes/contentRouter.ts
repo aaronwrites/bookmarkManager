@@ -11,12 +11,14 @@ contentRouter.get("/", authMiddleware , async (req, res) => {
         const content = await contentModel.find({
             userId: id
         }).populate("userId");
-        res.json({
+        res.status(StatusCode.OK).json({
+            success: true,
             content
         })
     }
     catch(e) {
         res.status(StatusCode.SeverError).json({
+            success: false,
             message: "An error occured while fetching contents",
             error: e
         })
