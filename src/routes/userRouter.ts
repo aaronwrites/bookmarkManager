@@ -30,38 +30,37 @@ userRouter.post("/signup", async (req: Request, res : Response) => {
         })
         return;
     }
-    else {
         const parsedBody  = schemaValidation.data;
-        try {
-            const userExists  = await userModel.findOne({
-                username: parsedBody.username
+    try {
+        const userExists  = await userModel.findOne({
+            username: parsedBody.username
+        })
+        if(userExists) {
+            res.status(StatusCode.Conflict).json({
+                message: "Username Alredy Taken! Try with a different username"
             })
-            if(userExists) {
-                res.status(StatusCode.Conflict).json({
-                    message: "Username Alredy Taken! Try with a different username"
-                })
-                return;
-            }
-
-            const hashedPassword = await bcrypt.hash(parsedBody.password, 5)
-            const user = await userModel.create({
-                username: parsedBody.username,
-                password: hashedPassword
-            })
-            if(user) {
-                res.status(StatusCode.OK).json({
-                    message: "User Created Successfully"
-                })
-                return;
-            }
+            return;
         }
-        catch(e) {
-            res.status(StatusCode.SeverError).json({
-                message: "Error creating User",
-                error: e
+
+        const hashedPassword = await bcrypt.hash(parsedBody.password, 5)
+        const user = await userModel.create({
+            username: parsedBody.username,
+            password: hashedPassword
+        })
+        if(user) {
+            res.status(StatusCode.OK).json({
+                message: "User Created Successfully"
             })
+            return;
         }
     }
+    catch(e) {
+        res.status(StatusCode.SeverError).json({
+            message: "Error creating User",
+            error: e
+        })
+    }
+
 
 
 })
