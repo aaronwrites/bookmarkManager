@@ -2,7 +2,9 @@ import { Request, Response, Router } from "express";
 import { z } from "zod";
 import { userModel } from "../database/db";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken"
+import jwt from "jsonwebtoken";
+import { StatusCode } from "..";
+
 export const userRouter = Router();
 
 const userCredentials = z.object({
@@ -10,16 +12,9 @@ const userCredentials = z.object({
     password: z.string().min(8, { message: "Password must be 8 or more characters long" }).max(20, { message: "Password must be 20 or fewer characters" }).regex(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^A-Za-z0-9]).{8,20}$/gm, {message: "Password should have atleast one uppercase, one lowercase, one special character, one number"})
 })
 
-export enum StatusCode {
-    BadRequest = 400,
-    Conflict = 409,
-    SeverError = 500,
-    OK = 200,
-    Unauthorized = 401,
-    NotFound = 404
-}
 
-type userCredentials = z.infer<typeof userCredentials>;
+
+// type userCredentials = z.infer<typeof userCredentials>;
 
 userRouter.post("/signup", async (req: Request, res : Response) => {
     const schemaValidation = userCredentials.safeParse(req.body);

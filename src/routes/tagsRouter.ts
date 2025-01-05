@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { authMiddleware } from "../middleware/authMiddleware";
 import { tagsModel } from "../database/db";
-import { StatusCode } from "./userRouter";
+import { StatusCode } from "..";
 
 export const tagsRouter = Router();
 

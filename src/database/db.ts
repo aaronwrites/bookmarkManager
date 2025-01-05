@@ -23,7 +23,7 @@ const tagsSchema = new Schema({
 
 const shareLinkSchema = new Schema({
     hash: {type: String, required: true},
-    userId: {type: ObjectId, ref: "Users"}
+    userId: {type: ObjectId, ref: "Users", required: true}
 })
 
 export const userModel = model("Users", userSchema);

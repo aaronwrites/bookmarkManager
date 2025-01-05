@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { authMiddleware } from "../middleware/authMiddleware";
 import { contentModel } from "../database/db";
-import { StatusCode } from "./userRouter";
+import { StatusCode } from "..";
 
 export const contentRouter = Router();
 
@@ -10,7 +10,7 @@ contentRouter.get("/", authMiddleware , async (req, res) => {
     try {
         const content = await contentModel.find({
             userId: id
-        }).populate("userId");
+        }).populate("userId", "username");
         res.status(StatusCode.OK).json({
             success: true,
             content

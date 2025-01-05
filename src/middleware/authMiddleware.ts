@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-import { StatusCode } from "../routes/userRouter";
+import { StatusCode } from "..";
 dotenv.config();
 
 interface JwtPayload {
