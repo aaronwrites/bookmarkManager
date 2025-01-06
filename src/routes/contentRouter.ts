@@ -28,7 +28,7 @@ contentRouter.get("/", authMiddleware , async (req, res) => {
 
 contentRouter.post("/", authMiddleware, async (req, res) => {
     const id = req.userId;
-    const { title, type, link, tags } = req.body;
+    const { title, type, link, notes, tags } = req.body;
     try {
         if(!title || !type || !link) {
             res.status(StatusCode.BadRequest).json({
@@ -42,6 +42,7 @@ contentRouter.post("/", authMiddleware, async (req, res) => {
             title,
             type,
             link,
+            notes,
             tags,
             userId: id
         })
@@ -106,7 +107,7 @@ contentRouter.delete("/:id", authMiddleware, async (req, res) => {
 
 
 contentRouter.put("/", authMiddleware, async (req, res) => {
-    const { title, type, link, tags, contentId } = req.body;
+    const { title, type, link, notes, tags, contentId } = req.body;
     try {
         if(!title || !type || !link) {
             res.status(StatusCode.BadRequest).json({
@@ -128,6 +129,7 @@ contentRouter.put("/", authMiddleware, async (req, res) => {
                 title,
                 type,
                 link,
+                notes,
                 tags
             },
             {new: true}

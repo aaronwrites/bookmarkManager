@@ -12,6 +12,7 @@ const contentSchema = new Schema({
     title: {type: String, required: true},
     type: {type: String, enum: contentTypes, required: true },
     link: {type: String, required: true},
+    notes: {type: String},
     tags: [{type: ObjectId, ref: "Tags"}],
     userId: {type: ObjectId, ref: "Users", required: true}
 })
