@@ -26,7 +26,7 @@ export const getAllContents = async (req : Request, res : Response) => {
 
 export const createContent = async (req : Request , res : Response) => {
     const id = req.userId;
-    const { title, type, link, notes, tags } = req.body;
+    const { title, type, link, tldr, tags } = req.body;
     try {
         if(!title || !type || !link) {
             res.status(StatusCode.BadRequest).json({
@@ -40,7 +40,7 @@ export const createContent = async (req : Request , res : Response) => {
             title,
             type,
             link,
-            notes,
+            tldr,
             tags,
             userId: id
         })
@@ -68,7 +68,7 @@ export const createContent = async (req : Request , res : Response) => {
 }
 
 export const updateContent = async (req : Request, res : Response) => {
-    const { title, type, link, notes, tags, contentId } = req.body;
+    const { title, type, link, tldr, tags, contentId } = req.body;
     try {
         if(!title || !type || !link) {
             res.status(StatusCode.BadRequest).json({
@@ -90,7 +90,7 @@ export const updateContent = async (req : Request, res : Response) => {
                 title,
                 type,
                 link,
-                notes,
+                tldr,
                 tags
             },
             {new: true}
