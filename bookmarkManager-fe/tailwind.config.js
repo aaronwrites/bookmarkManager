@@ -8,7 +8,12 @@ export default {
     extend: {
       colors: {
         primary: "#EF3B33",
-        background: "#FFFAFA"
+        background: "#FFFAFA",
+        muted: "#71717A",
+        input: "#e4e4e7"
+      },
+      fontFamily: {
+        manrope: ['Manrope', 'ui-sans-serif', 'system-ui',]
       }
     },
   },
