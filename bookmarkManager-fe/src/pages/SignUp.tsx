@@ -1,3 +1,4 @@
+import Button from "../components/ui/Button"
 import { Input } from "../components/ui/Input"
 const SignUp = () => {
   return (
@@ -21,7 +22,7 @@ const SignUp = () => {
             <Input type="password" id="confirm-password"/>
           </div>
           <div>
-            <button className="bg-primary text-white w-full rounded-lg py-2">Submit</button>
+            <Button variant={"outline"} >Submit</Button>
           </div>
         </form>
       </div>
