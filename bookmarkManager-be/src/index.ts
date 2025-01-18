@@ -5,8 +5,8 @@ import { userRouter } from "./routes/userRouter";
 import { contentRouter } from "./routes/contentRouter";
 import { tagsRouter } from "./routes/tagsRouter";
 import { shareRouter } from "./routes/shareRouter";
+import cors from "cors"
 dotenv.config();
-
 export enum StatusCode {
     BadRequest = 400,
     Conflict = 409,
@@ -18,6 +18,7 @@ export enum StatusCode {
 }
 
 const app = express();
+app.use(cors())
 app.use(express.json());
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/contents", contentRouter);

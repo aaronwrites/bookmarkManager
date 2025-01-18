@@ -2,7 +2,7 @@ import React from "react"
 import { cva, VariantProps } from "class-variance-authority"
 import { cn } from "../../lib/utils"
 
-const buttonVariants = cva(["rounded-md", "inline-flex", "justify-center", "items-center", "transition-colors"],{
+const buttonVariants = cva(["rounded-md", "inline-flex", "justify-center", "items-center", "gap-2", "transition-colors"],{
     variants: {
         variant: {
             primary: "text-white bg-primary hover:bg-primary/90",

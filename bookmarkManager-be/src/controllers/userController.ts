@@ -7,7 +7,7 @@ import jwt from "jsonwebtoken";
 
 
 const userCredentials = z.object({
-    username: z.string().min(3, { message: "Username must be 3 or more characters long" }).max(10, { message: "Username must be 10 or fewer characters" }),
+    username: z.string().min(3, { message: "Username must be 3 or more characters long" }).max(20, { message: "Username must be 20 or fewer characters" }),
     password: z.string().min(8, { message: "Password must be 8 or more characters long" }).max(20, { message: "Password must be 20 or fewer characters" }).regex(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^A-Za-z0-9]).{8,20}$/gm, {message: "Password should have atleast one uppercase, one lowercase, one special character, one number"})
 })
 
