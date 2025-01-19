@@ -4,8 +4,10 @@ import { Input } from "../components/ui/Input"
 import axios from "axios"
 import { Loader2 } from "lucide-react"
 import toast from "react-hot-toast"
+import { useNavigate } from "react-router-dom"
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -58,6 +60,7 @@ const SignUp = () => {
         password
       })
       toast.success(response.data.message);
+      navigate("/auth/signin")
     }
     catch(error) {
       //@ts-ignore
