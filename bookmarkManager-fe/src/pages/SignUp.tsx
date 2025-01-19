@@ -4,7 +4,7 @@ import { Input } from "../components/ui/Input"
 import axios from "axios"
 import { Loader2 } from "lucide-react"
 import toast from "react-hot-toast"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -99,6 +99,10 @@ const SignUp = () => {
             <label className="font-medium text-sm" htmlFor="confirmPassword">Confirm Password: </label>
             <Input type="password" value={formData.confirmPassword} onChange={handleChange} id="confirmPassword"/>
             {errors.confirmPassword && <span className="text-red-500 text-sm">{errors.confirmPassword}</span>}
+          </div>
+          <div className="text-sm">
+            <span className="text-muted">Already have an account? </span>
+            <Link to={"/auth/signin"} className="text-primary hover:underline">Sign In</Link>
           </div>
           <div>
             <Button variant={"primary"} className="w-full" disabled={Object.values(errors).some(error => error) || loading}>
