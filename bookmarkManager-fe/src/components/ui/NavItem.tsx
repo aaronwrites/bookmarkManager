@@ -13,7 +13,7 @@ const NavItem = ({ children, to } : NavItemProps) => {
         {({isActive}) => (
             <div className={cn("p-2 bg-primary bg-opacity-0 border-b-2 border-transparent hover:bg-opacity-10 hover:rounded-lg transition-all duration-300 hover:shadow-md cursor-pointer",
                 {
-                    "bg-primary bg-opacity-10 rounded-lg border-primary" : isActive
+                    "bg-primary bg-opacity-15 rounded-lg border-primary" : isActive
                 }
             )}>
                 { children }
