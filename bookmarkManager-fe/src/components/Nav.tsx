@@ -10,15 +10,21 @@ const Nav = () => {
                 <House color="#EF3B33" />
             </NavItem>
         </ToolTip>
-        <NavItem to="/collections">
-            <LayoutGrid color="#EF3B33" />
-        </NavItem>
-        <NavItem to="/tags">
-            <Tags color="#EF3B33"/>
-        </NavItem>
-        <NavItem to="/search">
-            <Search color="#EF3B33"/>
-        </NavItem>
+        <ToolTip text="Collections">
+            <NavItem to="/collections">
+                <LayoutGrid color="#EF3B33" />
+            </NavItem>
+        </ToolTip>
+        <ToolTip text="Tags">
+            <NavItem to="/tags">
+                <Tags color="#EF3B33"/>
+            </NavItem>
+        </ToolTip>
+        <ToolTip text="Search">
+            <NavItem to="/search">
+                <Search color="#EF3B33"/>
+            </NavItem>
+        </ToolTip>
     </nav>
   )
 }
