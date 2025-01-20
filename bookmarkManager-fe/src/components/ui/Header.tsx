@@ -1,6 +1,6 @@
 import { Logo } from "../../assets/Logo"
 import Avatar from "./Avatar"
-import Nav from "./Nav"
+import Nav from "../Nav"
 
 const Header = () => {
   return (

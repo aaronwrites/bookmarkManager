@@ -15,8 +15,8 @@ function App() {
     <BrowserRouter>
       <Toaster position="top-center" reverseOrder={false} />
         <Routes>
-          <Route path="/" element={<AppLayout />}>
-            <Route path="/home" element={<Home />} />
+          <Route element={<AppLayout />}>
+            <Route path="/" element={<Home />} />
             <Route path="/collections" element={<Collections />} />
             <Route path="/tags" element={<TagManagement />} />
             <Route path="/search" element={<Search />} />

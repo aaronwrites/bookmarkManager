@@ -1,12 +1,15 @@
 import { House, LayoutGrid, Tags, Search } from "lucide-react"
-import NavItem from "./NavItem"
+import NavItem from "./ui/NavItem"
+import ToolTip from "./ui/ToolTip"
 
 const Nav = () => {
   return (
     <nav className="relative flex items-center gap-10">
-        <NavItem to="/home">
-            <House color="#EF3B33" />
-        </NavItem>
+        <ToolTip text="Home">
+            <NavItem to="/home">
+                <House color="#EF3B33" />
+            </NavItem>
+        </ToolTip>
         <NavItem to="/collections">
             <LayoutGrid color="#EF3B33" />
         </NavItem>
