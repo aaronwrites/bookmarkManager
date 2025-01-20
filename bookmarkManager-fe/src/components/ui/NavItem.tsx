@@ -11,9 +11,9 @@ const NavItem = ({ children, to } : NavItemProps) => {
   return (
     <NavLink to={to}>
         {({isActive}) => (
-            <div className={cn("p-2 hover:bg-primary hover:bg-opacity-15 hover:rounded-lg transition-all hover:shadow-md cursor-pointer",
+            <div className={cn("p-2 bg-primary bg-opacity-0 border-b-2 border-transparent hover:bg-opacity-10 hover:rounded-lg transition-all duration-300 hover:shadow-md cursor-pointer",
                 {
-                    "bg-primary bg-opacity-15 rounded-lg" : isActive
+                    "bg-primary bg-opacity-10 rounded-lg border-primary" : isActive
                 }
             )}>
                 { children }

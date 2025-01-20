@@ -6,7 +6,7 @@ const Nav = () => {
   return (
     <nav className="relative flex items-center gap-10">
         <ToolTip text="Home">
-            <NavItem to="/home">
+            <NavItem to="/">
                 <House color="#EF3B33" />
             </NavItem>
         </ToolTip>
