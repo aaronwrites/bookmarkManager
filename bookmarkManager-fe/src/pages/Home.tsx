@@ -1,23 +1,31 @@
-import { useQuery } from "@tanstack/react-query"
-import { getContent } from "../services/handlers"
+// import { useQuery } from "@tanstack/react-query"
+// import { getContent } from "../services/handlers"
+
+// import ContentCard from "../components/ui/ContentCard"
+
 
 const Home = () => {
-  const { data, isError, error } = useQuery({
-    queryKey: ["content"],
-    queryFn: getContent
-  })
+  // const { isPending, data, isError, error } = useQuery({
+  //   queryKey: ["content"],
+  //   queryFn: getContent
+  // })
 
-  if(isError) {
-    console.log(error);
-    return <div>Error fetching...</div>
-  }
+  // if(isPending) {
+  //   return <div>Loading...</div>
+  // }
 
-  console.log(data);
+  // if(isError) {
+  //   console.log(error);
+  //   return <div>Error fetching...</div>
+  // }
+
+  // console.log(data);
 
   return (
-    <>
-      <div>Home</div>
-    </>
+    <div>
+      Home
+    </div>
+
   )
 }
 

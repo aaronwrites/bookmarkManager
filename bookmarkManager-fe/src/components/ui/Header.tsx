@@ -4,7 +4,7 @@ import Nav from "../Nav"
 
 const Header = () => {
   return (
-    <header className="bg-background flex justify-between items-center sticky top-0 w-full py-3 px-5 shadow-md">
+    <header className="bg-background flex justify-between items-center sticky top-0 w-full py-3 px-5 shadow-md z-50">
         <Logo />
         <div className="hidden lg:block">
           <Nav navPosition="top" />
