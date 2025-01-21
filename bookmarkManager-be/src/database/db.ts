@@ -6,11 +6,10 @@ const userSchema = new Schema({
     password: {type: String, required: true}
 })
 
-const contentTypes = ["X", "youtube", "website", "others"]
 
 const contentSchema = new Schema({
-    title: {type: String, required: true},
-    type: {type: String, enum: contentTypes, required: true },
+    title: {type: String},
+    type: {type: String},
     link: {type: String, required: true},
     tldr: {type: String},
     tags: [{type: ObjectId, ref: "Tags"}],
