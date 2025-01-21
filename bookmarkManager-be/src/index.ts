@@ -6,6 +6,7 @@ import { contentRouter } from "./routes/contentRouter";
 import { tagsRouter } from "./routes/tagsRouter";
 import { shareRouter } from "./routes/shareRouter";
 import cors from "cors"
+import { previewRouter } from "./routes/previewRouter";
 dotenv.config();
 export enum StatusCode {
     BadRequest = 400,
@@ -24,6 +25,7 @@ app.use("/api/v1/user", userRouter);
 app.use("/api/v1/contents", contentRouter);
 app.use("/api/v1/tags", tagsRouter);
 app.use("/api/v1/bookmarks", shareRouter);
+app.use("/api/v1/preview", previewRouter);
 
 const main = async () => {
     try {
