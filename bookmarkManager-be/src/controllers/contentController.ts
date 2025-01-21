@@ -28,10 +28,10 @@ export const createContent = async (req : Request , res : Response) => {
     const id = req.userId;
     const { title, type, link, tldr, tags } = req.body;
     try {
-        if(!title || !type || !link) {
+        if(!link) {
             res.status(StatusCode.BadRequest).json({
                 success: false,
-                message: "All the Fields except tags are required"
+                message: "Link is required"
             });
             return;
         }
@@ -70,13 +70,6 @@ export const createContent = async (req : Request , res : Response) => {
 export const updateContent = async (req : Request, res : Response) => {
     const { title, type, link, tldr, tags, contentId } = req.body;
     try {
-        if(!title || !type || !link) {
-            res.status(StatusCode.BadRequest).json({
-                success: false,
-                message: "All the Fields except tags are required"
-            });
-            return;
-        }
         if(!contentId) {
             res.status(StatusCode.BadRequest).json({
                 success: false,
@@ -85,14 +78,15 @@ export const updateContent = async (req : Request, res : Response) => {
             return;
         }
 
+        const updateFields: Record<string, string> = {};
+        if (title) updateFields.title = title;
+        if (type) updateFields.type = type;
+        if (link) updateFields.link = link;
+        if (tldr) updateFields.tldr = tldr;
+        if (tags) updateFields.tags = tags;
+
         const contentUpdation = await contentModel.findOneAndUpdate({_id: contentId, userId: req.userId}, 
-            {
-                title,
-                type,
-                link,
-                tldr,
-                tags
-            },
+            updateFields,
             {new: true}
         )
         if(!contentUpdation) {
