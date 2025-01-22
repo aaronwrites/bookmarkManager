@@ -8,6 +8,7 @@ import Collections from "./pages/Collections"
 import TagManagement from "./pages/TagManagement"
 import Search from "./pages/Search"
 import AppLayout from "./layouts/AppLayout"
+import ProtectedRoute from "./layouts/ProtectedRoute"
 
 function App() {
 
@@ -15,11 +16,13 @@ function App() {
     <BrowserRouter>
       <Toaster position="top-center" reverseOrder={false} />
         <Routes>
-          <Route element={<AppLayout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/collections" element={<Collections />} />
-            <Route path="/tags" element={<TagManagement />} />
-            <Route path="/search" element={<Search />} />
+          <Route element={<ProtectedRoute />}>
+            <Route element={<AppLayout />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/collections" element={<Collections />} />
+              <Route path="/tags" element={<TagManagement />} />
+              <Route path="/search" element={<Search />} />
+            </Route>
           </Route>
           <Route path={"/auth"} element={<AuthLayout />}>
             <Route path="signin" element={<SignIn />} />

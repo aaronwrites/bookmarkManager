@@ -1,6 +1,7 @@
 // import { useQuery } from "@tanstack/react-query"
 // import { getContent } from "../services/handlers"
 
+
 // import ContentCard from "../components/ui/ContentCard"
 
 
@@ -22,7 +23,7 @@ const Home = () => {
   // console.log(data);
 
   return (
-    <div>
+    <div className="min-h-screen p-5">
       Home
     </div>
 

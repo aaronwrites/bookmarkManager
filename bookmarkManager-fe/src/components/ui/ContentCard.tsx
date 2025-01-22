@@ -16,7 +16,7 @@ const ContentCard = ({link} : {link: string}) => {
   data ? console.log(data) : null
 
   return (
-    <div className="flex flex-col h-auto justify-center items-center group gap-2 cursor-pointer max-w-lg">
+    <div className="flex flex-col h-auto justify-center items-center group gap-2 cursor-pointer mb-3">
       <div className="relative grow self-stretch">
         <div className="relative h-full rounded-xl flex flex-col shadow-xl overflow-hidden">
           <img src={data?.image ? data.image : fallbackImg} alt="Preview" className="w-full object-contain" />
