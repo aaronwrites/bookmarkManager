@@ -1,6 +1,6 @@
 import { api } from "./api";
 
-export const getContent = async () => {
+export const getAllContents = async () => {
     const response = await api.get("/contents");
     return response.data
 }

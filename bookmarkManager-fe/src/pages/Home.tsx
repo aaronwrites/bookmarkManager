@@ -1,35 +1,47 @@
-// import { useQuery } from "@tanstack/react-query"
-// import { getContent } from "../services/handlers"
-
-
-// import { useState } from "react"
-// import Modal from "../components/ui/Modal"
-// import { Input } from "../components/ui/Input";
-
-
-// import ContentCard from "../components/ui/ContentCard"
+import { useQuery } from "@tanstack/react-query"
+import { getAllContents } from "../services/contentService";
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+import { contentType } from "../types/contentTypes";
+import ContentCard from "../components/ui/ContentCard";
+import { useState } from "react";
 
 
 const Home = () => {
-  // const { isPending, data, isError, error } = useQuery({
-  //   queryKey: ["content"],
-  //   queryFn: getContent
-  // })
 
-  // if(isPending) {
-  //   return <div>Loading...</div>
-  // }
+  const [selectedContent, setSelectedContent] = useState<contentType | null>(null);
 
-  // if(isError) {
-  //   console.log(error);
-  //   return <div>Error fetching...</div>
-  // }
+  const { isPending, data, isError, error } = useQuery({
+    queryKey: ["content"],
+    queryFn: getAllContents
+  })
 
-  // console.log(data);
+  if(isPending) {
+    return <div>Loading...</div>
+  }
+
+  if(isError) {
+    console.log(error);
+    return <div>Error fetching...</div>
+  }
+
+  console.log(data);
+  console.log(selectedContent)
 
   return (
     <div className="min-h-screen p-5">
-      Home
+      <ResponsiveMasonry
+                columnsCountBreakPoints={{350: 1, 750: 2, 900: 4}}
+      >
+        <Masonry gutter="24px">
+          {data?.content.map((content : contentType) => (
+            <ContentCard
+              key={content._id}
+              content={content}
+              onClickHandler={() => setSelectedContent(content)}
+            />
+          ))}
+        </Masonry>
+      </ResponsiveMasonry>
     </div>
 
   )

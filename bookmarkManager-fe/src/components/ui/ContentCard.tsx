@@ -2,10 +2,17 @@ import { useQuery } from "@tanstack/react-query"
 import { getMeta } from "../../services/previewService"
 import { Trash2, ExternalLink } from "lucide-react"
 import fallbackImg from "../../assets/image.png"
-const ContentCard = ({link} : {link: string}) => {
+import { contentType } from "../../types/contentTypes"
+
+type ContentCardProps = {
+  content: contentType,
+  onClickHandler: () => void
+}
+
+const ContentCard = ({content, onClickHandler} : ContentCardProps) => {
   const { data , isError, error } = useQuery({
-    queryKey: ["preview", link],
-    queryFn: () => getMeta(link)
+    queryKey: ["preview", content.link],
+    queryFn: () => getMeta(content.link)
   })
 
   if(isError) {
@@ -16,10 +23,10 @@ const ContentCard = ({link} : {link: string}) => {
   data ? console.log(data) : null
 
   return (
-    <div className="flex flex-col h-auto justify-center items-center group gap-2 cursor-pointer mb-3">
+    <div className="flex flex-col h-auto justify-center items-center group gap-2 cursor-pointer m-1.5 w-full" onClick={onClickHandler}>
       <div className="relative grow self-stretch">
         <div className="relative h-full rounded-xl flex flex-col shadow-xl overflow-hidden">
-          <img src={data?.image ? data.image : fallbackImg} alt="Preview" className="w-full object-contain" />
+          <img src={data?.image ? data.image : fallbackImg} alt="Preview" className="w-full object-center" />
           <div className="absolute inset-0 w-full h-full bg-black opacity-0 backdrop-blur-sm bg-opacity-0 group-hover:bg-opacity-50 group-hover:opacity-100 p-4 transition-opacity ease-out duration-300">
             <div className="w-full h-full flex flex-col justify-between">
               <div className="text-white">
@@ -32,7 +39,7 @@ const ContentCard = ({link} : {link: string}) => {
               </div>
               <div className="text-white flex justify-end w-full">
                   <div className="flex items-center gap-2 text-sm px-2 py-1 bg-black backdrop-blur-lg bg-opacity-30 rounded-full border border-gray-200 border-opacity-30 max-w-56">
-                    <div className="truncate"><a href={link}>{link}</a></div>
+                    <div className="truncate hover:underline"><a href={content.link}>{content.link}</a></div>
                     <div>
                       <ExternalLink size={16} />
                     </div>
