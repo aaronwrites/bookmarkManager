@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import { getMeta } from "../../services/handlers"
+import { getMeta } from "../../services/previewService"
 import { Trash2, ExternalLink } from "lucide-react"
 import fallbackImg from "../../assets/image.png"
 const ContentCard = ({link} : {link: string}) => {
