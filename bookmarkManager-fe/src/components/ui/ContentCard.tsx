@@ -1,9 +1,9 @@
-import { useQuery } from "@tanstack/react-query"
-import { getMeta } from "../../services/previewService"
 import { Trash2, ExternalLink, Maximize2 } from "lucide-react"
 import fallbackImg from "../../assets/image.png"
 import { contentType } from "../../types/contentTypes"
 import { Tweet } from "react-tweet"
+import { usePreview } from "../../hooks/usePreview"
+import LoadingCard from "./LoadingCard"
 
 type ContentCardProps = {
   content: contentType,
@@ -11,15 +11,13 @@ type ContentCardProps = {
 }
 
 const ContentCard = ({content, onClickHandler} : ContentCardProps) => {
-  const { data , isError } = useQuery({
-    queryKey: ["preview", content.link],
-    queryFn: () => getMeta(content.link),
-    retry: false
-  })
+  const { data , isError, isTweet, isPending } = usePreview(content.link)
   
   const cardTitle = content.title || data?.title || content.link;
-  const isTweet = content.link.includes("x.com") && content.link.includes("/status/");
 
+  if(isPending) {
+    return <LoadingCard />
+  }
 
   return (
     <div className="flex flex-col h-auto justify-center items-center group gap-2 cursor-pointer m-1.5 w-full" onClick={onClickHandler}>

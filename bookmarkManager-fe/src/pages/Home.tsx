@@ -4,6 +4,8 @@ import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { contentType } from "../types/contentTypes";
 import ContentCard from "../components/ui/ContentCard";
 import { useState } from "react";
+import Modal from "../components/ui/Modal";
+import ContentModal from "../components/ContentModal";
 
 
 const Home = () => {
@@ -24,9 +26,6 @@ const Home = () => {
     return <div>Error fetching...</div>
   }
 
-  console.log(data);
-  console.log(selectedContent)
-
   return (
     <div className="min-h-screen p-5">
       <ResponsiveMasonry
@@ -42,6 +41,11 @@ const Home = () => {
           ))}
         </Masonry>
       </ResponsiveMasonry>
+
+      <Modal isOpen={!!selectedContent} onClose={() => setSelectedContent(null)} >
+        {selectedContent && <ContentModal content={selectedContent} />}
+      </Modal>
+
     </div>
 
   )
