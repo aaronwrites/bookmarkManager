@@ -32,7 +32,7 @@ const ContentCard = ({content, onClickHandler} : ContentCardProps) => {
                 className="w-full object-center"
               />
             )}
-          <div className="absolute inset-0 w-full h-full bg-black opacity-0 backdrop-blur-sm bg-opacity-0 group-hover:bg-opacity-50 group-hover:opacity-100 p-4 transition-opacity ease-out duration-300">
+          <div className="absolute inset-0 w-full h-full bg-black opacity-0 backdrop-blur-sm bg-opacity-0 group-hover:bg-opacity-50 group-hover:opacity-100 p-4 transition-opacity duration-300 ease-in-out">
             <div className="w-full h-full flex flex-col justify-between">
               <div className="text-white">
                 <div className="flex justify-between items-center">
@@ -47,7 +47,7 @@ const ContentCard = ({content, onClickHandler} : ContentCardProps) => {
                 <Maximize2 size={18} />
               </div>
               <div className="text-white flex justify-end w-full">
-                  <div className="flex items-center gap-2 text-sm px-2 py-1 bg-black backdrop-blur-lg bg-opacity-30 rounded-full border border-gray-200 border-opacity-30 max-w-56">
+                  <div className="flex items-center gap-2 text-sm px-2 py-1 bg-black backdrop-blur-lg bg-opacity-30 rounded-full border border-gray-200 border-opacity-30 max-w-56" onClick={(e) => e.stopPropagation()}>
                     <div className="truncate hover:underline"><a href={content.link}>{content.link}</a></div>
                     <div>
                       <ExternalLink size={16} />

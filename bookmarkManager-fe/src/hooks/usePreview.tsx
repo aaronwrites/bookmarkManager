@@ -8,6 +8,6 @@ export const usePreview = (link: string) => {
     retry: false,
     });
 
-    const isTweet = link.includes("twitter.com") && link.includes("/status/");
+    const isTweet = link.includes("x.com") && link.includes("/status/");
     return { data, isError, isTweet, isPending };
 };

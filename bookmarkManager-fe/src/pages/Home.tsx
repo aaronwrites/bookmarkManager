@@ -41,11 +41,9 @@ const Home = () => {
           ))}
         </Masonry>
       </ResponsiveMasonry>
-
-      <Modal isOpen={!!selectedContent} onClose={() => setSelectedContent(null)} >
+      <Modal isOpen={!!selectedContent} onClose={() => setSelectedContent(null)} className="rounded-xl sm:rounded-lg lg:rounded-2xl w-[90%] h-[90%] lg:w-[80vw] lg:h-[80vh] max-w-screen max-h-screen overflow-scroll" >
         {selectedContent && <ContentModal content={selectedContent} />}
       </Modal>
-
     </div>
 
   )
