@@ -68,7 +68,7 @@ export const createContent = async (req : Request , res : Response) => {
 }
 
 export const updateContent = async (req : Request, res : Response) => {
-    const { title, type, link, tldr, tags, contentId } = req.body;
+    const { title, type, tldr, tags, contentId } = req.body;
     try {
         if(!contentId) {
             res.status(StatusCode.BadRequest).json({
@@ -81,7 +81,6 @@ export const updateContent = async (req : Request, res : Response) => {
         const updateFields: Record<string, string> = {};
         if (title) updateFields.title = title;
         if (type) updateFields.type = type;
-        if (link) updateFields.link = link;
         if (tldr) updateFields.tldr = tldr;
         if (tags) updateFields.tags = tags;
 
