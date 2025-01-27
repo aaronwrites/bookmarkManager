@@ -3,6 +3,26 @@ import { StatusCode } from "..";
 import { Request, Response } from "express";
 
 
+export const getTag = async (req : Request, res : Response) => {
+    try {
+        const tag = await tagsModel.findOne({
+            _id: req.params.id,
+            userId: req.userId
+        })
+        res.status(StatusCode.OK).json({
+            success: true,
+            tag
+        })
+    }
+    catch(e) {
+        res.status(StatusCode.SeverError).json({
+            success: false,
+            message: "Error while fetching tag details",
+            error: e
+        })
+    }
+}
+
 export const getAllTags = async (req : Request, res : Response) => {
     try {
         const tags = await tagsModel.find({
@@ -31,6 +51,19 @@ export const createTag = async (req : Request, res : Response) => {
         })
     }
     try {
+        const ifTagExists = await tagsModel.findOne({
+            tagName: tagTitle,
+            userId: req.userId,
+          });
+          console.log(ifTagExists)
+          if (ifTagExists) {
+             res.status(StatusCode.OK).json({
+              success: true,
+              message: "Tag already exists",
+              tag: ifTagExists, // Optionally return the existing tag
+            });
+            return;
+          }
         const tag = await tagsModel.create({
             tagName: tagTitle,
             userId: req.userId
@@ -45,10 +78,11 @@ export const createTag = async (req : Request, res : Response) => {
         }
         res.status(StatusCode.OK).json({
             success: true, 
-            message: "Tag created succesfully"
+            tag
         })
     }
     catch(e) {
+        console.error("Error details:", e);
         res.status(StatusCode.SeverError).json({
             success: false,
             message: "Erro while creating Tag"

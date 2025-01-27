@@ -9,13 +9,11 @@ export type updateContentType = {
     title?: string,
     type?: string,
     tldr?: string,
-    tags?: string,
+    tags?: string[],
     contentId: string
 }
 
 export const updateContent = async (updatedContent : updateContentType) => {
-    console.log("hi from update handler")
     const response = await api.put("/contents", updatedContent);
-    console.log(response)
     return response.data;
 }
