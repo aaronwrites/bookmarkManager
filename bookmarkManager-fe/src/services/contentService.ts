@@ -32,3 +32,8 @@ export const getContentsByTag = async (tagId : string) => {
         Promise.reject(e)
     }
 }
+
+export const deleteContent = async (contentId : string) => {
+    const response = await api.delete(`/contents/${contentId}`);
+    return response
+}

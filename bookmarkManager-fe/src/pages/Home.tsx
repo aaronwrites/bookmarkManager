@@ -6,7 +6,7 @@ import ContentCard from "../components/ui/ContentCard";
 import { useEffect, useState } from "react";
 import Modal from "../components/ui/Modal";
 import ContentModal from "../components/ContentModal";
-import { Bookmark } from "lucide-react";
+import { Bookmark, Command } from "lucide-react";
 import toast from "react-hot-toast";
 
 
@@ -72,7 +72,7 @@ const Home = () => {
           All Bookmarks
           <Bookmark size={30} />
         </h2>
-        <p className="text-muted">View all your bookmarks. Click on a card to expand</p>
+        <p className="text-muted flex items-center">Click on a card to expand. To add a bookmark simply copy the url of any site and press Ctrl + V or  <Command className="ml-1" /> + V here to paste. As simple as that :)  </p>
       </div>
       <ResponsiveMasonry
                 columnsCountBreakPoints={{350: 1, 750: 2, 900: 4}}
