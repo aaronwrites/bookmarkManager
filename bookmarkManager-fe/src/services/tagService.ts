@@ -5,6 +5,11 @@ export const getTagName = async (id : string) => {
     return response.data.tag
 }
 
+export const getAllTags = async () => {
+    const response = await api.get(`/tags`);
+    return response.data
+}
+
 export const createTag = async (tagTitle: string) => {
     const response = await api.post("/tags", { tagTitle });
     return response.data.tag._id;

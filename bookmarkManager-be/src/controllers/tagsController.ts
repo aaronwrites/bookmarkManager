@@ -60,7 +60,7 @@ export const createTag = async (req : Request, res : Response) => {
              res.status(StatusCode.OK).json({
               success: true,
               message: "Tag already exists",
-              tag: ifTagExists, // Optionally return the existing tag
+              tag: ifTagExists,
             });
             return;
           }

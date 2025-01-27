@@ -1,10 +1,12 @@
 import { Router } from "express";
 import { authMiddleware } from "../middleware/authMiddleware";
-import { createContent, deleteContent, getAllContents, updateContent } from "../controllers/contentController";
+import { createContent, deleteContent, getAllContents, getContentByTag, updateContent } from "../controllers/contentController";
 
 export const contentRouter = Router();
 
 contentRouter.get("/", authMiddleware, getAllContents);
+
+contentRouter.get("/byTag", authMiddleware, getContentByTag);
 
 contentRouter.post("/", authMiddleware, createContent);
 

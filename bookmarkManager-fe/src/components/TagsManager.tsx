@@ -36,13 +36,12 @@ const TagsManager = ({ tags = [], contentId }: TagsManagerProps) => {
 		},
 	});
 
-	// Mutation to update content with the new tag
 	const { mutate: updateContentWithTag } = useMutation({
 		mutationFn: (tags: string[]) =>
 			updateContent({ contentId, tags }),
 		onSuccess: () => {
             toast.success("Updated Successfully");
-			queryClient.invalidateQueries({ queryKey: ["content"] }); // Refresh content data
+			queryClient.invalidateQueries({ queryKey: ["content"] });
 		},
 		onError: (error) => {
 			console.error("Error updating content with tag:", error);
@@ -63,7 +62,7 @@ const TagsManager = ({ tags = [], contentId }: TagsManagerProps) => {
 
     const removeTag = (tagId: string) => {
         setAllTags((prevTagIds) => prevTagIds.filter((id) => id !== tagId));
-        updateContentWithTag(allTags.filter((id) => id !== tagId)); // Update the content with the new tag list
+        updateContentWithTag(allTags.filter((id) => id !== tagId));
       }
 
 	if (!allTags || allTags.length === 0) {

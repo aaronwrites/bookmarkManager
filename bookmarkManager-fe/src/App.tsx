@@ -9,6 +9,7 @@ import TagManagement from "./pages/TagManagement"
 import Search from "./pages/Search"
 import AppLayout from "./layouts/AppLayout"
 import ProtectedRoute from "./layouts/ProtectedRoute"
+import ContentsByTag from "./pages/ContentsByTag"
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/collections" element={<Collections />} />
               <Route path="/tags" element={<TagManagement />} />
+              <Route path="/tag/:tagId" element={<ContentsByTag />} />
               <Route path="/search" element={<Search />} />
             </Route>
           </Route>
