@@ -5,6 +5,11 @@ export const getAllContents = async () => {
     return response.data
 }
 
+export const createContent = async (link : string) => {
+    const response = await api.post("/contents", { link });
+    return response
+}
+
 export type updateContentType = {
     title?: string,
     type?: string,

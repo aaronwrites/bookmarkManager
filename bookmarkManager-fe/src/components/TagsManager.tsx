@@ -1,4 +1,4 @@
-import { Plus } from "lucide-react";
+import { Plus, Tags } from "lucide-react";
 import Button from "./ui/Button";
 import Tag from "./ui/Tag";
 import { useState } from "react";
@@ -67,7 +67,42 @@ const TagsManager = ({ tags = [], contentId }: TagsManagerProps) => {
 
 	if (!allTags || allTags.length === 0) {
 		return (
-			<div className="w-full bg-white rounded-xl p-4 text-primary flex items-center gap-3">
+				<div className="w-full bg-white rounded-xl p-4 text-primary flex items-center gap-3">
+					{isAddiing ? (
+						<Input
+							type="text"
+							value={newTag}
+							placeholder="Enter tag name"
+							autoFocus
+							onChange={(e) => setNewTag(e.target.value)}
+							onBlur={handleAddTag}
+							onKeyDown={(e) => {
+								if (e.key === "Enter") {
+									handleAddTag();
+								}
+							}}
+						/>
+					) : (
+						<Button
+							className="flex items-center rounded-full gap-1 px-2 py-1.5"
+							disabled={isPending}
+							onClick={() => setIsAdding(true)}
+						>
+							<Plus />
+							{isPending ? "Adding..." : "Add Tag"}
+						</Button>
+					)}
+					No tags to display
+				</div>
+		);
+	}
+	return (
+		<div className="w-full items-center bg-white border border-primary/50 rounded-xl p-4">
+			<div className="flex items-center gap-2 mb-4 p-2 text-primary/90">
+			<p className="text-md font-medium">Tags</p>
+			<Tags />
+			</div>
+			<div className="flex flex-wrap gap-2 items-center mb-3">
 				{isAddiing ? (
 					<Input
 						type="text"
@@ -75,7 +110,10 @@ const TagsManager = ({ tags = [], contentId }: TagsManagerProps) => {
 						placeholder="Enter tag name"
 						autoFocus
 						onChange={(e) => setNewTag(e.target.value)}
-						onBlur={handleAddTag}
+						onBlur={() => {
+							setNewTag("")
+							setIsAdding(false)
+						}}
 						onKeyDown={(e) => {
 							if (e.key === "Enter") {
 								handleAddTag();
@@ -84,7 +122,8 @@ const TagsManager = ({ tags = [], contentId }: TagsManagerProps) => {
 					/>
 				) : (
 					<Button
-						className="flex items-center rounded-full gap-1 px-2 py-1.5"
+					variant={"outline"}
+						className="flex items-center rounded-full gap-1 px-2 py-1.5 border-primary/50 text-primary/80"
 						disabled={isPending}
 						onClick={() => setIsAdding(true)}
 					>
@@ -92,39 +131,10 @@ const TagsManager = ({ tags = [], contentId }: TagsManagerProps) => {
 						{isPending ? "Adding..." : "Add Tag"}
 					</Button>
 				)}
-				No tags to display
+				{allTags.map((tagId) => {
+					return <Tag id={tagId} key={tagId} removeTag={removeTag} />;
+				})}
 			</div>
-		);
-	}
-	return (
-		<div className="w-full flex flex-wrap gap-2 items-center bg-white rounded-xl p-4">
-			{isAddiing ? (
-				<Input
-					type="text"
-					value={newTag}
-					placeholder="Enter tag name"
-					autoFocus
-					onChange={(e) => setNewTag(e.target.value)}
-					onBlur={handleAddTag}
-					onKeyDown={(e) => {
-						if (e.key === "Enter") {
-							handleAddTag();
-						}
-					}}
-				/>
-			) : (
-				<Button
-					className="flex items-center rounded-full gap-1 px-2 py-1.5"
-					disabled={isPending}
-					onClick={() => setIsAdding(true)}
-				>
-					<Plus />
-					{isPending ? "Adding..." : "Add Tag"}
-				</Button>
-			)}
-			{allTags.map((tagId) => {
-				return <Tag id={tagId} key={tagId} removeTag={removeTag} />;
-			})}
 		</div>
 	);
 };
