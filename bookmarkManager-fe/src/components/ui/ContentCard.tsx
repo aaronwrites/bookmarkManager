@@ -27,6 +27,7 @@ const ContentCard = ({content, onClickHandler} : ContentCardProps) => {
     mutationFn: (contentId : string) => deleteContent(contentId),
     onSuccess: () => {
       toast.success('Content deleted successfully');
+      setIsOpen(false)
       queryClient.invalidateQueries()
     },
     onError: (error) => {

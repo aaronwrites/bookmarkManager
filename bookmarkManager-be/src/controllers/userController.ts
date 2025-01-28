@@ -84,7 +84,8 @@ export const handleUserSignIn = async (req : Request, res : Response) => {
             return;
         }
         const token = jwt.sign({
-            userId: userExists._id
+            userId: userExists._id,
+            userName: userExists.username
         }, process.env.JWT_SECRET as string);
         if(!token) {
             res.status(StatusCode.SeverError).json({

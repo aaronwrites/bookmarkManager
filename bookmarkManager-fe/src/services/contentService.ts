@@ -37,3 +37,8 @@ export const deleteContent = async (contentId : string) => {
     const response = await api.delete(`/contents/${contentId}`);
     return response
 }
+
+export const searchContents = async (seachQuery : string) => {
+    const response = await api.get(`/contents/search/?searchQuery=${seachQuery}`);
+    return response.data.searchResults
+}

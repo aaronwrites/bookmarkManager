@@ -172,3 +172,51 @@ export const deleteContent = async (req: Request, res: Response) => {
 		});
 	}
 };
+
+export const searchContents = async (req : Request, res : Response) => {
+	const { searchQuery } = req.query;
+
+	if (!searchQuery) {
+		res.status(StatusCode.BadRequest).json({ message: "Search query is required" });
+		return;
+	}
+
+	try {
+		const searchResults = await contentModel.aggregate([
+			{
+				$lookup: {
+					from: "tags",
+					localField: "tags",
+					foreignField: "_id",
+					as: "tagDetails"
+				},
+			},
+			{
+				$match: {
+					$or: [
+						{ title: { $regex: searchQuery, $options: "i" } },
+						{ tldr: { $regex: searchQuery, $options: "i" } },
+						{ "tagDetails.tagName": { $regex: searchQuery, $options: "i" } },
+					]
+				}
+			},
+			{
+				$project: {
+					title: 1,
+					tldr: 1,
+					link: 1,
+					tags: 1,
+					tagDetails: 1
+				}
+			}
+		])
+
+		res.status(StatusCode.OK).json({
+			success: true,
+			searchResults
+		})
+	}
+	catch(e) {
+		res.status(StatusCode.SeverError).json({ success: false, message: "Internal server error" });
+	}
+}

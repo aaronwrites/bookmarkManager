@@ -8,7 +8,7 @@ type DeleteModalProps = {
 
 const DeleteContentModal = ({ onClose, deleteContent } : DeleteModalProps) => {
   return (
-    <div className="flex flex-col justify-center items-center gap-6 p-4 w-full border border-red-500 h-full">
+    <div className="flex flex-col justify-center items-center gap-6 p-4 w-full h-full">
         <div className="text-red-500 flex flex-col justify-center items-center gap-2">
             <Trash2 className="text-xl" />
             <p className="text-xl font-medium">Delete Bookmark?</p>

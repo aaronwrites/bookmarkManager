@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { authMiddleware } from "../middleware/authMiddleware";
-import { createContent, deleteContent, getAllContents, getContentByTag, updateContent } from "../controllers/contentController";
+import { createContent, deleteContent, getAllContents, getContentByTag, searchContents, updateContent } from "../controllers/contentController";
 
 export const contentRouter = Router();
 
@@ -14,3 +14,4 @@ contentRouter.put("/", authMiddleware, updateContent);
 
 contentRouter.delete("/:id", authMiddleware, deleteContent);
 
+contentRouter.get("/search", authMiddleware, searchContents);

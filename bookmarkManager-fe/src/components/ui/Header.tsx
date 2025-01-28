@@ -1,6 +1,7 @@
 import { Logo } from "../../assets/Logo"
 import Avatar from "./Avatar"
 import Nav from "../Nav"
+import ToolTip from "./ToolTip"
 
 const Header = () => {
   return (
@@ -12,7 +13,9 @@ const Header = () => {
         <div className="fixed bottom-0 lg:hidden left-0 w-full py-3 px-5 z-10 bg-background shadow-xl">
           <Nav navPosition="bottom" />
         </div>
+        <ToolTip position={"bottom"} text="Profile">
         <Avatar />
+        </ToolTip>
     </header>
   )
 }
