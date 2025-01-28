@@ -9,6 +9,7 @@ export const getAllContents = async (req: Request, res: Response) => {
 			.find({
 				userId: id,
 			})
+			.sort({ _id: -1 })
 			.populate("userId", "username");
 		res.status(StatusCode.OK).json({
 			success: true,

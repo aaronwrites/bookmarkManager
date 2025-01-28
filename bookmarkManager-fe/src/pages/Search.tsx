@@ -88,17 +88,6 @@ const Search = () => {
         </ResponsiveMasonry>
         </>
       )}
-      {/* <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 4 }}>
-				<Masonry gutter="24px">
-					{data?.content.map((content: contentType) => (
-						<ContentCard
-							key={content._id}
-							content={content}
-							onClickHandler={() => setSelectedContent(content)}
-						/>
-					))}
-				</Masonry>
-			</ResponsiveMasonry>*/}
 			<Modal
 				isOpen={!!selectedContent}
 				onClose={() => setSelectedContent(null)}

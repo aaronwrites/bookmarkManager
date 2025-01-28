@@ -55,6 +55,7 @@ const ContentCard = ({content, onClickHandler} : ContentCardProps) => {
                   src={isError ? fallbackImg : data?.image || fallbackImg}
                   alt="Preview"
                   className="w-full object-center"
+                  onError={(e) => (e.currentTarget.src = fallbackImg)}
                 />
               )}
             <div className="absolute inset-0 w-full h-full bg-black opacity-0 backdrop-blur-sm bg-opacity-0 group-hover:bg-opacity-50 group-hover:opacity-100 p-4 transition-opacity duration-300 ease-in-out">

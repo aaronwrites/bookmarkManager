@@ -1,4 +1,4 @@
-import { House, LayoutGrid, Tags, Search } from "lucide-react"
+import { House, Tags, Search } from "lucide-react"
 import NavItem from "./ui/NavItem"
 import ToolTip from "./ui/ToolTip"
 
@@ -12,11 +12,11 @@ const Nav = ({ navPosition } : {
                 <House color="#EF3B33" />
             </NavItem>
         </ToolTip>
-        <ToolTip position={navPosition === "top" ? "bottom" : "top"} text="Collections">
+        {/* <ToolTip position={navPosition === "top" ? "bottom" : "top"} text="Collections">
             <NavItem to="/collections">
                 <LayoutGrid color="#EF3B33" />
             </NavItem>
-        </ToolTip>
+        </ToolTip> */}
         <ToolTip position={navPosition === "top" ? "bottom" : "top"} text="Tags">
             <NavItem to="/tags">
                 <Tags color="#EF3B33"/>

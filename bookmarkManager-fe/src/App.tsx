@@ -4,7 +4,7 @@ import SignIn from "./pages/SignIn"
 import SignUp from "./pages/SignUp"
 import { Toaster } from "react-hot-toast"
 import Home from "./pages/Home"
-import Collections from "./pages/Collections"
+// import Collections from "./pages/Collections"
 import TagManagement from "./pages/TagManagement"
 import Search from "./pages/Search"
 import AppLayout from "./layouts/AppLayout"
@@ -20,7 +20,7 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route element={<AppLayout />}>
               <Route path="/" element={<Home />} />
-              <Route path="/collections" element={<Collections />} />
+              {/* <Route path="/collections" element={<Collections />} /> */}
               <Route path="/tags" element={<TagManagement />} />
               <Route path="/tag/:tagId" element={<ContentsByTag />} />
               <Route path="/search" element={<Search />} />
