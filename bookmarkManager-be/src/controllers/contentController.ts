@@ -46,7 +46,7 @@ export const getContentByTag = async (req: Request, res: Response) => {
 			sucess: true,
 			content,
 			tag
-		}); // Return contents with the tag
+		}); 
 	} catch (error) {
 		console.error("Error fetching contents by tag:", error);
 		res
@@ -218,6 +218,7 @@ export const searchContents = async (req : Request, res : Response) => {
 		})
 	}
 	catch(e) {
+		console.error(e);
 		res.status(StatusCode.SeverError).json({ success: false, message: "Internal server error" });
 	}
 }

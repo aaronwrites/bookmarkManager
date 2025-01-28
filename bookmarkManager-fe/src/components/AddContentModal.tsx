@@ -23,7 +23,7 @@ const AddContentModal = ({ addContent, closeFn } : AddContentModal) => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center gap-6 p-4 w-full border border-red-500 h-full">
+    <div className="flex flex-col justify-center items-center gap-6 p-4 w-full h-full">
         <div className="text-red-500 flex flex-col items-center gap-2 w-full px-4">
             <div className="flex items-center gap-2">
               <p className="text-xl font-medium">Add a BookMark</p>

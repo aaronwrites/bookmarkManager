@@ -1,44 +1,35 @@
 import { SearchIcon } from "lucide-react";
 import { useState } from "react"
 import { Input } from "../components/ui/Input";
-import Button from "../components/ui/Button";
 import { contentType } from "../types/contentTypes";
 import { searchContents } from "../services/contentService";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import ContentCard from "../components/ui/ContentCard";
 import Modal from "../components/ui/Modal";
 import ContentModal from "../components/ContentModal";
+import { useQuery } from "@tanstack/react-query";
+import useDebounce from "../hooks/useDebounce";
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [results, setResults] = useState<contentType[] | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const debouncedSearchQuery = useDebounce(searchQuery);
   const [selectedContent, setSelectedContent] = useState<contentType | null>(
     null
   );
-
-
-  const handleSearch = async () => {
-    const trimmedQuery = searchQuery.trim();
-    if (!trimmedQuery) return;
-
-    setLoading(true);
-    setError(null);
-    setResults(null);
-
-    try {
-      const response = await searchContents(trimmedQuery);
-      setResults(response);
-    } catch (err) {
-      console.error(err);
-      setError("Error fetching results. Please try again.");
-    } finally {
-      setLoading(false);
+  const { data, isPending, isError } = useQuery({
+    queryKey: ["search", debouncedSearchQuery],
+    queryFn: () => {
+      if(debouncedSearchQuery) {
+        return searchContents(debouncedSearchQuery)
+      }
+      return null
     }
-  };
+  })
 
-    if (loading) {
+
+
+
+    if (isPending) {
       return (
           <div className="min-h-screen flex justify-center items-center">
               <p className="text-xl text-muted font-bold">Searching Contents...</p>
@@ -46,7 +37,7 @@ const Search = () => {
           );
     }
 
-    if (error) {
+    if (isError) {
       return (
           <div className="min-h-screen flex justify-center items-center">
               <p className="text-xl text-primary font-bold">Error fetching results</p>
@@ -64,9 +55,8 @@ const Search = () => {
       </div>
       <div className="flex flex-col gap-4">
         <Input type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Search for Contents using their title, tl;dr or tags" className="max-w-[800px] p-3" />
-        <Button className="w-fit" size={"lg"} onClick={handleSearch}>Search</Button>
       </div>
-      {results === null ? null : results.length === 0 ? (
+      {data === null ? null : data.length === 0 ? (
         <div className="mt-5 text-center text-xl text-muted">
           No contents found for "{searchQuery}"
         </div>
@@ -77,7 +67,7 @@ const Search = () => {
         </div>
         <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 4 }}>
           <Masonry gutter="24px">
-            {results.map((content) => (
+            {data.map((content : contentType) => (
               <ContentCard
                 key={content._id}
                 content={content}
