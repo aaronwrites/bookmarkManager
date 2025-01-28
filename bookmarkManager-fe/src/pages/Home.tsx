@@ -6,20 +6,27 @@ import ContentCard from "../components/ui/ContentCard";
 import { useEffect, useState } from "react";
 import Modal from "../components/ui/Modal";
 import ContentModal from "../components/ContentModal";
-import { Bookmark, Command } from "lucide-react";
+import { Bookmark, Command, Plus } from "lucide-react";
 import toast from "react-hot-toast";
+import AddContentModal from "../components/AddContentModal";
+import Button from "../components/ui/Button";
 
 
 const Home = () => {
 
   const [selectedContent, setSelectedContent] = useState<contentType | null>(null);
+  const [isOpen, setIsOpen] = useState(false);
   const queryClient = useQueryClient();
 
   useEffect(() => {
     const handlePaste = (e : ClipboardEvent ) => {
+      
       const clipboardData = e.clipboardData;
       if(clipboardData) {
         const pastedLink = clipboardData.getData('Text');
+        if(isOpen) {
+          return;
+        }
         if (isValidUrl(pastedLink)) {
           postContent(pastedLink);
         } else {
@@ -32,7 +39,7 @@ const Home = () => {
     return () => {
       document.removeEventListener('paste', handlePaste);
     };
-  }, []);
+  }, [isOpen]);
 
   const { isPending, data, isError, error } = useQuery({
     queryKey: ["content"],
@@ -67,13 +74,25 @@ const Home = () => {
 
   return (
     <div className="min-h-screen p-5">
-      <div className="mb-8 p-2 flex flex-col gap-2">
-        <h2 className="text-3xl font-bold text-primary flex items-center gap-3">
-          All Bookmarks
-          <Bookmark size={30} />
-        </h2>
-        <p className="text-muted flex items-center">Click on a card to expand. To add a bookmark simply copy the url of any site and press Ctrl + V or  <Command className="ml-1" /> + V here to paste. As simple as that :)  </p>
+      <div className="mb-8 p-2 flex items-center justify-between gap-2">
+        <div>
+          <h2 className="text-3xl font-bold text-primary flex items-center gap-3">
+            All Bookmarks
+            <Bookmark size={30} />
+          </h2>
+          <p className="text-muted flex items-center">Click on a card to expand. To add a bookmark simply copy the url of any site and press Ctrl + V or  <Command className="ml-1" /> + V here to paste. As simple as that :)  </p>
+        </div>
+        <div>
+          <Button onClick={() => setIsOpen(true)}>Add Bookmark <Plus /> </Button>
+        </div>
       </div>
+      <Modal isOpen={!!selectedContent} onClose={() => setSelectedContent(null)} className="rounded-xl sm:rounded-lg lg:rounded-2xl w-[90%] h-[90%] lg:w-[80vw] lg:h-[80vh] max-w-screen max-h-screen overflow-scroll" >
+        {selectedContent && <ContentModal content={selectedContent} />}
+      </Modal>
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} className="rounded-xl sm:rounded-lg lg:rounded-2xl w-[90%] h-[70%] lg:w-[30vw] lg:h-[30vh] max-w-[500px] max-h-[500px]" >
+        <AddContentModal addContent={(link) => postContent(link)} closeFn={() => setIsOpen(false)} />
+      </Modal>
+
       <ResponsiveMasonry
                 columnsCountBreakPoints={{350: 1, 750: 2, 900: 4}}
       >
@@ -87,9 +106,6 @@ const Home = () => {
           ))}
         </Masonry>
       </ResponsiveMasonry>
-      <Modal isOpen={!!selectedContent} onClose={() => setSelectedContent(null)} className="rounded-xl sm:rounded-lg lg:rounded-2xl w-[90%] h-[90%] lg:w-[80vw] lg:h-[80vh] max-w-screen max-h-screen overflow-scroll" >
-        {selectedContent && <ContentModal content={selectedContent} />}
-      </Modal>
     </div>
 
   )
