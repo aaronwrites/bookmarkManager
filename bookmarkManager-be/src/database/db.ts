@@ -26,7 +26,14 @@ const shareLinkSchema = new Schema({
     userId: {type: ObjectId, ref: "Users", required: true}
 })
 
+const folderSchema = new Schema({
+    name: { type: String, required: true },
+    userId: { type: ObjectId, ref: "Users", required: true },
+    contents: [{ type: ObjectId, ref: "Contents" }],
+});
+
 export const userModel = model("Users", userSchema);
 export const contentModel = model("Contents", contentSchema);
 export const tagsModel = model("Tags", tagsSchema);
 export const shareLinkModel = model("ShareLink", shareLinkSchema);
+export const folderModel = model("Folders", folderSchema);
