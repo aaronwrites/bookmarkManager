@@ -27,12 +27,14 @@ app.use("/api/v1/tags", tagsRouter);
 app.use("/api/v1/bookmarks", shareRouter);
 app.use("/api/v1/preview", previewRouter);
 
+const port = process.env.PORT || 3000;
+
 const main = async () => {
     try {
         await mongoose.connect(process.env.MONGO_URL as string);
         console.log("Database Connection Successfull");
-        app.listen(process.env.PORT || 3000, () => {
-            console.log("Server is listening in port 3000")
+        app.listen(port, () => {
+            console.log(`Server is listening in port ${port}`)
         });
         ;
     }
