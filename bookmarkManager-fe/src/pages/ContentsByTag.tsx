@@ -60,7 +60,7 @@ const ContentsByTag = () => {
                 <ArrowLeft />
                 <p>Back to All Tags</p>
             </Button>
-            <div className="p-3 flex items-center gap-2">
+            <div className="p-3 flex items-center gap-2 flex-wrap">
                 <h1 className="text-xl font-bold">Showing results for bookmarks with the tag </h1>
                 <span className="px-2 py-1 bg-primary text-white rounded-full text-md">{data?.tag.tagName}</span>
             </div>

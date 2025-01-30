@@ -73,16 +73,16 @@ const Home = () => {
 
 
   return (
-    <div className="min-h-screen p-5">
-      <div className="mb-8 p-2 flex items-center justify-between gap-2">
+    <div className="min-h-screen p-5 mb-10">
+      <div className="mb-8 p-2 flex items-center justify-between gap-3 flex-wrap">
         <div>
           <h2 className="text-3xl font-bold text-primary flex items-center gap-3">
             All Bookmarks
             <Bookmark size={30} />
           </h2>
-          <p className="text-muted flex items-center">Click on a card to expand. To add a bookmark simply copy the url of any site and press Ctrl + V or  <Command className="ml-1" /> + V here to paste. As simple as that :)  </p>
+          <p className="text-muted items-center hidden xl:flex">Click on a card to expand. To add a bookmark simply copy the url of any site and press Ctrl + V or  <Command className="ml-1" /> + V here to paste. As simple as that :)  </p>
         </div>
-        <div>
+        <div className="flex-shrink-0">
           <Button onClick={() => setIsOpen(true)}>Add Bookmark <Plus /> </Button>
         </div>
       </div>

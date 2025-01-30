@@ -31,7 +31,7 @@ const main = async () => {
     try {
         await mongoose.connect(process.env.MONGO_URL as string);
         console.log("Database Connection Successfull");
-        app.listen(process.env.PORT, () => {
+        app.listen(process.env.PORT || 3000, () => {
             console.log("Server is listening in port 3000")
         });
         ;

@@ -67,7 +67,7 @@ const TagsManager = ({ tags = [], contentId }: TagsManagerProps) => {
 
 	if (!allTags || allTags.length === 0) {
 		return (
-				<div className="w-full bg-white rounded-xl p-4 text-primary flex items-center gap-3">
+				<div className="w-full bg-white rounded-xl p-4 text-primary flex items-center gap-3 flex-wrap">
 					{isAddiing ? (
 						<Input
 							type="text"

@@ -31,7 +31,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, Var
 
 const Button = ({ variant, size, disabled, className, ...props } : ButtonProps) => {
   return (
-    <button className={cn(buttonVariants({ variant, size, disabled, className }))} {...props} />
+    <button disabled={disabled} className={cn(buttonVariants({ variant, size, disabled, className }))} {...props} />
   )
 }
 

@@ -30,7 +30,7 @@ const Tag = ({ id, removeTag }: TagProps) => {
         return <span className="p-2 border border-primary text-primary rounded-full">Loading...</span>
     }
 
-	return <span className="relative transition-colors px-3 py-1.5 bg-muted/20 text-muted hover:bg-primary hover:text-white rounded-full group cursor-pointer" onClick={handleClick}>
+	return <span className="relative transition-colors px-3 py-1.5 bg-muted/20 text-muted hover:bg-primary hover:text-white rounded-full group cursor-pointer max-w-32 truncate" onClick={handleClick}>
         {data?.tagName}
         { removeTag && <button
         onClick={handleDelete}

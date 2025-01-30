@@ -94,7 +94,7 @@ const ContentModal = ({ content }: { content: contentType }) => {
 				<TagsManager tags={content.tags} contentId={content._id} />
 				<div className="relative bg-white p-5 rounded-xl">
 					<div className="absolute bg-white top-1 left-8 p-2">
-						<p className="font-bold text-sm text-primary/70">TL;DR</p>
+						<p className="font-bold text-sm text-primary/90">TL;DR</p>
 					</div>
 					<textarea
 						maxLength={500}
@@ -102,7 +102,7 @@ const ContentModal = ({ content }: { content: contentType }) => {
 						value={formData.tldr}
 						onChange={handleChange}
 						placeholder="TL;DR for this bookmark goes here..."
-						className="rounded-xl h-64 resize-none border-2 border-primary/30 p-5 w-full text-muted outline-primary"
+						className="rounded-xl h-64 resize-none border-2 border-primary/40 p-5 w-full text-muted outline-primary"
 					/>
 				</div>
 				<Button

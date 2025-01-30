@@ -45,7 +45,7 @@ const Search = () => {
           );
     }
   return (
-    <div className="min-h-screen p-5">
+    <div className="min-h-screen p-5 mb-10">
       <div className="mb-5 p-2 flex flex-col gap-2">
         <h2 className="text-3xl font-bold text-primary flex items-center gap-3">
           Search Bookmarks
