@@ -24,7 +24,7 @@ const Home = () => {
       const clipboardData = e.clipboardData;
       if(clipboardData) {
         const pastedLink = clipboardData.getData('Text');
-        if(isOpen) {
+        if(isOpen || selectedContent) {
           return;
         }
         if (isValidUrl(pastedLink)) {

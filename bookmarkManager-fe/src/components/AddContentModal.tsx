@@ -15,11 +15,11 @@ const AddContentModal = ({ addContent, closeFn } : AddContentModal) => {
 
   const handleAddContent = () => {
     if (!link || !link.includes("http")) {
-      toast.error("Please enter a valid link"); // Add basic validation
+      toast.error("Please enter a valid link"); 
       return;
     }
-    addContent(link); // Call the addContent function with the link
-    setLink(""); // Clear the input field after adding content
+    addContent(link);
+    setLink(""); 
   };
 
   return (
