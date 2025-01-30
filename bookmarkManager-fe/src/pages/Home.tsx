@@ -24,7 +24,7 @@ const Home = () => {
       const clipboardData = e.clipboardData;
       if(clipboardData) {
         const pastedLink = clipboardData.getData('Text');
-        if(isOpen || selectedContent) {
+        if(isOpen || selectedContent ) {
           return;
         }
         if (isValidUrl(pastedLink)) {
@@ -39,7 +39,7 @@ const Home = () => {
     return () => {
       document.removeEventListener('paste', handlePaste);
     };
-  }, [isOpen]);
+  }, [isOpen, selectedContent]);
 
   const { isPending, data, isError, error } = useQuery({
     queryKey: ["content"],
