@@ -63,12 +63,16 @@ const Home = () => {
   }
 
   if(isPending) {
-    return <div>Loading...</div>
+    return (<div className="min-h-screen flex justify-center items-center">
+            <p className="text-xl text-muted font-bold">Loading Contents...</p>
+    </div>)
   }
 
   if(isError) {
     console.log(error);
-    return <div>Error fetching...</div>
+    return (<div className="min-h-screen flex justify-center items-center">
+      <p className="text-xl text-muted font-bold">Error Fetching Contents. Please Try Again Later</p>
+  </div>)
   }
 
 
