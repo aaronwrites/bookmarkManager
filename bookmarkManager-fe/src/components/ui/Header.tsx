@@ -16,6 +16,7 @@ const Header = () => {
         <ToolTip position={"bottom"} text="Profile">
         <Avatar />
         </ToolTip>
+
     </header>
   )
 }

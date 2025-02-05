@@ -20,7 +20,7 @@ export enum StatusCode {
 
 const app = express();
 app.use(cors({
-    origin: "https://mindvault-oz42.onrender.com"
+    origin: ["http://localhost:5173", "https://mindvault-oz42.onrender.com"]
 }))
 app.use(express.json());
 app.use("/api/v1/user", userRouter);

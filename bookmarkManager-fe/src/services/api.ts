@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 export const api = axios.create({
-    baseURL: "https://mindvault-api.onrender.com/api/v1",
+    baseURL: "http://localhost:3000/api/v1",
     headers: {
         Accept: "application/json",
         "Content-Type": "application/json",

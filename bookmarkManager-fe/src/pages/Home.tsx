@@ -6,7 +6,7 @@ import ContentCard from "../components/ui/ContentCard";
 import { useEffect, useState } from "react";
 import Modal from "../components/ui/Modal";
 import ContentModal from "../components/ContentModal";
-import { Bookmark, Command, Plus } from "lucide-react";
+import { Bookmark, Command, Plus, Share2 } from "lucide-react";
 import toast from "react-hot-toast";
 import AddContentModal from "../components/AddContentModal";
 import Button from "../components/ui/Button";
@@ -80,14 +80,27 @@ const Home = () => {
     <div className="min-h-screen p-5 mb-10">
       <div className="mb-8 p-2 flex items-center justify-between gap-3 flex-wrap">
         <div>
-          <h2 className="text-3xl font-bold text-primary flex items-center gap-3">
+          <h2 className=" text-xl lg:text-3xl font-bold text-primary flex items-center gap-3">
             All Bookmarks
             <Bookmark size={30} />
           </h2>
           <p className="text-muted items-center hidden xl:flex">Click on a card to expand. To add a bookmark simply copy the url of any site and press Ctrl + V or  <Command className="ml-1" /> + V here to paste. As simple as that :)  </p>
         </div>
-        <div className="flex-shrink-0">
-          <Button onClick={() => setIsOpen(true)}>Add Bookmark <Plus /> </Button>
+        <div className="hidden lg:flex items-center gap-2">
+            <div className="flex-shrink-0">
+              <Button variant={"outline"} onClick={() => console.log("share triggered")}>Share Your Vault <Share2 /> </Button>
+            </div>
+            <div className="flex-shrink-0">
+              <Button onClick={() => setIsOpen(true)}>Add Bookmark <Plus /> </Button>
+            </div>
+        </div>
+        <div className="flex lg:hidden items-center gap-2">
+            <div className="flex-shrink-0">
+              <Button variant={"outline"} size={"sm"} onClick={() => console.log("share triggered")}>Share Your Vault <Share2 /> </Button>
+            </div>
+            <div className="flex-shrink-0">
+              <Button size={"sm"} onClick={() => setIsOpen(true)}>Add Bookmark <Plus /> </Button>
+            </div>
         </div>
       </div>
       <Modal isOpen={!!selectedContent} onClose={() => setSelectedContent(null)} className="rounded-xl sm:rounded-lg lg:rounded-2xl w-[90%] h-[90%] lg:w-[80vw] lg:h-[80vh] max-w-screen max-h-screen overflow-scroll" >
