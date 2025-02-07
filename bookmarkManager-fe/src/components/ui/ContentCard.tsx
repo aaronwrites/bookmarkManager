@@ -13,7 +13,7 @@ import DeleteContentModal from "../DeleteContentModal"
 
 type ContentCardProps = {
   content: contentType,
-  onClickHandler: () => void
+  onClickHandler?: () => void
 }
 
 const ContentCard = ({content, onClickHandler} : ContentCardProps) => {
@@ -63,18 +63,18 @@ const ContentCard = ({content, onClickHandler} : ContentCardProps) => {
                 <div className="text-white">
                   <div className="flex justify-between items-center">
                     <p className="text-white font-medium truncate">{cardTitle}</p>
-                    <button className="rounded-full bg-red-500 hover:bg-red-600 p-1.5" onClick={(e) => {
+                    {onClickHandler && <button className="rounded-full bg-red-500 hover:bg-red-600 p-1.5" onClick={(e) => {
                       e.stopPropagation();
                       setIsOpen(true)
                     }}>
                       <Trash2 size={20} />
-                    </button>
+                    </button>}
                   </div>
                 </div>
-                <div className="text-white/80 self-center tracking-wider flex items-center gap-2 font-bold">
+                {onClickHandler && <div className="text-white/80 self-center tracking-wider flex items-center gap-2 font-bold">
                   Click to expand
                   <Maximize2 size={18} />
-                </div>
+                </div>}
                 <div className="text-white flex justify-end w-full">
                     <div className="flex items-center gap-2 text-sm px-2 py-1 bg-black backdrop-blur-lg bg-opacity-30 rounded-full border border-gray-200 border-opacity-30 max-w-56" onClick={(e) => e.stopPropagation()}>
                       <div className="truncate hover:underline"><a href={content.link}>{content.link}</a></div>

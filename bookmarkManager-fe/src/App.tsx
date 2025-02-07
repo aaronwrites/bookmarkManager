@@ -10,6 +10,8 @@ import Search from "./pages/Search"
 import AppLayout from "./layouts/AppLayout"
 import ProtectedRoute from "./layouts/ProtectedRoute"
 import ContentsByTag from "./pages/ContentsByTag"
+import Share from "./pages/Share"
+import InvalidRoute from "./pages/InvalidRoute"
 
 function App() {
 
@@ -26,10 +28,12 @@ function App() {
               <Route path="/search" element={<Search />} />
             </Route>
           </Route>
+          <Route path="/share/:hash" element={<Share />} />
           <Route path={"/auth"} element={<AuthLayout />}>
             <Route path="signin" element={<SignIn />} />
             <Route path="signup" element={<SignUp />} />
           </Route>
+          <Route path="*" element={<InvalidRoute />} />
         </Routes>
     </BrowserRouter>
   )

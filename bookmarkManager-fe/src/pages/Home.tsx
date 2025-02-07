@@ -10,11 +10,13 @@ import { Bookmark, Command, Plus, Share2 } from "lucide-react";
 import toast from "react-hot-toast";
 import AddContentModal from "../components/AddContentModal";
 import Button from "../components/ui/Button";
+import ShareModal from "../components/shareModal";
 
 
 const Home = () => {
 
   const [selectedContent, setSelectedContent] = useState<contentType | null>(null);
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const queryClient = useQueryClient();
 
@@ -58,6 +60,8 @@ const Home = () => {
     },
   });
 
+
+
   const isValidUrl = (url : string) => {
     return url.includes("http")
   }
@@ -88,7 +92,7 @@ const Home = () => {
         </div>
         <div className="hidden lg:flex items-center gap-2">
             <div className="flex-shrink-0">
-              <Button variant={"outline"} onClick={() => console.log("share triggered")}>Share Your Vault <Share2 /> </Button>
+              <Button variant={"outline"} onClick={() => setIsShareModalOpen(true)}>Share Your Vault <Share2 /> </Button>
             </div>
             <div className="flex-shrink-0">
               <Button onClick={() => setIsOpen(true)}>Add Bookmark <Plus /> </Button>
@@ -96,18 +100,21 @@ const Home = () => {
         </div>
         <div className="flex lg:hidden items-center gap-2">
             <div className="flex-shrink-0">
-              <Button variant={"outline"} size={"sm"} onClick={() => console.log("share triggered")}>Share Your Vault <Share2 /> </Button>
+              <Button variant={"outline"} size={"sm"} onClick={() => setIsShareModalOpen(true)}>Share Your Vault <Share2 /> </Button>
             </div>
             <div className="flex-shrink-0">
               <Button size={"sm"} onClick={() => setIsOpen(true)}>Add Bookmark <Plus /> </Button>
             </div>
         </div>
       </div>
-      <Modal isOpen={!!selectedContent} onClose={() => setSelectedContent(null)} className="rounded-xl sm:rounded-lg lg:rounded-2xl w-[90%] h-[90%] lg:w-[80vw] lg:h-[80vh] max-w-screen max-h-screen overflow-scroll" >
-        {selectedContent && <ContentModal content={selectedContent} />}
+      <Modal isOpen={isShareModalOpen} onClose={() => setIsShareModalOpen(false)}>
+        <ShareModal />
       </Modal>
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} className="rounded-xl sm:rounded-lg lg:rounded-2xl w-[90%] h-[70%] lg:w-[30vw] lg:h-[30vh] max-w-[500px] max-h-[500px]" >
         <AddContentModal addContent={(link) => postContent(link)} closeFn={() => setIsOpen(false)} />
+      </Modal>
+      <Modal isOpen={!!selectedContent} onClose={() => setSelectedContent(null)} className="rounded-xl sm:rounded-lg lg:rounded-2xl w-[90%] h-[90%] lg:w-[80vw] lg:h-[80vh] max-w-screen max-h-screen overflow-scroll" >
+        {selectedContent && <ContentModal content={selectedContent} />}
       </Modal>
 
       <ResponsiveMasonry
