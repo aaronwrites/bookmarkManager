@@ -10,7 +10,7 @@ import { Bookmark, Command, Plus, Share2 } from "lucide-react";
 import toast from "react-hot-toast";
 import AddContentModal from "../components/AddContentModal";
 import Button from "../components/ui/Button";
-import ShareModal from "../components/shareModal";
+import ShareModal from "../components/ShareModal";
 
 
 const Home = () => {
